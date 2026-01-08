@@ -205,7 +205,8 @@ replay_pid*
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -354,3 +355,4 @@ compile_commands.json
 
 # End entries from WPI Lib team
 
+src/main/kotlin/org/frc5183/robot/constants/BuildConstants.kt

@@ -20,6 +20,7 @@ plugins {
     java
     kotlin("jvm") version "2.1.0"
     id("edu.wpi.first.GradleRIO") version "2025.3.2"
+    id("com.peterabeles.gversion") version "1.10"
     idea
 }
 
@@ -48,6 +49,11 @@ deploy {
         roborio.artifacts {
             register<FRCJavaArtifact>("frcJava") {
                 setJarTask(tasks.jar)
+
+                jvmArgs.add("-XX:+UnlockExperimentalVMOptions")
+                jvmArgs.add("-XX:GCTimeRatio=5")
+                jvmArgs.add("-XX:+UseSerialGC")
+                jvmArgs.add("-XX:MaxGCPauseMillis=50")
             }
 
             register<FileTreeArtifact>("frcStaticFileDeploy") {
@@ -124,13 +130,14 @@ kotlin {
         vendor = jvmVendor
     }
 }
-tasks {
 
+tasks {
     test {
         useJUnitPlatform()
         systemProperty("junit.jupiter.extensions.autodetection.enabled", "true")
     }
     compileJava {
+        dependsOn("createVersionFile")
         options.encoding = Charsets.UTF_8.name()
         // Configure string concat to always inline compile
         options.compilerArgs.add("-XDstringConcat=inline")
@@ -150,6 +157,21 @@ tasks {
         
         from({ sourceSets.main.get().allSource })
     }
+
+    register<JavaExec>("replayWatch", JavaExec::class.java) {
+        mainClass = "org.littletonrobotics.junction.ReplayWatch"
+        classpath = sourceSets.main.get().runtimeClasspath
+    }
+}
+
+gversion {
+    srcDir = "src/main/kotlin"
+    classPackage = "org.frc5183.robot.constants"
+    className = "BuildConstants"
+    dateFormat = "yyyy-MM-dd HH:mm:ss z"
+    timeZone = "America/Detroit"
+    indent = "  "
+    language = "kotlin"
 }
 
 idea {
