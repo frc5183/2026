@@ -3,13 +3,13 @@ pluginManagement {
         mavenLocal()
         gradlePluginPortal()
         val frcYear = "2026"
-        val frcHome = if (System.getProperty("os.name").contains("windows", ignoreCase = true)) {
-            file(System.getenv("PUBLIC") ?: """C:\Users\Public""")
-        } else {
-            file(System.getProperty("user.home"))
-        }
-            .resolve("wpilib")
-            .resolve(frcYear)
+        val frcHome =
+            if (System.getProperty("os.name").contains("windows", ignoreCase = true)) {
+                file(System.getenv("PUBLIC") ?: """C:\Users\Public""")
+            } else {
+                file(System.getProperty("user.home"))
+            }.resolve("wpilib")
+                .resolve(frcYear)
 
         maven {
             name = "frcHome"

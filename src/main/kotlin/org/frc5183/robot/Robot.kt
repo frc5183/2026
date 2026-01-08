@@ -17,8 +17,12 @@ import org.littletonrobotics.junction.Logger
 
 object Robot : LoggedRobot() {
     init {
-        HAL.report(FRCNetComm.tResourceType.kResourceType_Language, FRCNetComm.tInstances.kLanguage_Kotlin, 0,
-            WPILibVersion.Version)
+        HAL.report(
+            FRCNetComm.tResourceType.kResourceType_Language,
+            FRCNetComm.tInstances.kLanguage_Kotlin,
+            0,
+            WPILibVersion.Version,
+        )
 
         HAL.report(FRCNetComm.tResourceType.kResourceType_Framework, FRCNetComm.tInstances.kFramework_AdvantageKit)
 
