@@ -53,8 +53,6 @@ class TeleopDriveCommand(
         addRequirements(drive)
     }
 
-    override fun initialize() {}
-
     override fun execute() {
         var translation = applyCurveToTranslation(Translation2d(xInput(), yInput()), translationCurve)
 
@@ -105,6 +103,4 @@ class TeleopDriveCommand(
         }
 
     override fun isFinished(): Boolean = false
-
-    override fun end(interrupted: Boolean) {}
 }
