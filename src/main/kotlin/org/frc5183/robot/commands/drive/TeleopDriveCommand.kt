@@ -62,23 +62,23 @@ class TeleopDriveCommand(
             translation = applyAllianceAwareTranslation(translation)
         }
 
-        val xSpeed = PhysicalConstants.MAX_SPEED * translation.x
-        val ySpeed = PhysicalConstants.MAX_SPEED * translation.y
+        val xSpeed = TODO("requires constants") * translation.x
+        val ySpeed = TODO("requires constants") * translation.y
 
         drive.drive(
             if (fieldRelative) {
                 ChassisSpeeds.fromFieldRelativeSpeeds(
                     xSpeed,
                     ySpeed,
-                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput()),
+                    TODO("requires constants") * rotationCurve(rotationInput()),
                     drive.robotPose.rotation,
                 )
             } else {
-                ChassisSpeeds.fromRobotRelativeSpeeds(
+                // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition. Otherwise revert to 2025 code to at least keep the issues consistent with last year.
+                ChassisSpeeds(
                     xSpeed,
                     ySpeed,
-                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput()),
-                    drive.robotPose.rotation,
+                    TODO("requires constants") * rotationCurve(rotationInput()),
                 )
             },
         )
@@ -88,13 +88,17 @@ class TeleopDriveCommand(
         translation: Translation2d,
         curve: Curve,
     ): Translation2d {
-        val angle = atan2(translation.x, translation.y)
-        var magnitude = curve(sqrt(translation.x.pow(2) + translation.y.pow(2)).coerceIn(0.0, 1.0))
+        // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition. Otherwise revert to 2025 code to at least keep the issues consistent with last year.
+        val angle = atan2(translation.y, translation.x)
+        val magnitude = curve(sqrt(translation.x.pow(2) + translation.y.pow(2)).coerceIn(0.0, 1.0))
         return Translation2d(magnitude * cos(angle), magnitude * sin(angle))
     }
 
     fun applyAllianceAwareTranslation(fieldRelativeTranslation: Translation2d): Translation2d =
-        if (fieldRelative && DriverStation.getAlliance().orElseGet { DriverStation.Alliance.Red } == DriverStation.Alliance.Blue) {
+        if (fieldRelative && DriverStation.getAlliance().orElseGet {
+                DriverStation.Alliance.Red
+            } == DriverStation.Alliance.Red
+        ) { // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition. Otherwise revert to 2025 code to at least keep the issues consistent with last year.
             fieldRelativeTranslation.rotateBy(Rotation2d.k180deg)
         } else {
             fieldRelativeTranslation
