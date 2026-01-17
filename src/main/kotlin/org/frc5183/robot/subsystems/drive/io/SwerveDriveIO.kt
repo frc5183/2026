@@ -8,7 +8,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState
 import edu.wpi.first.math.numbers.N1
 import edu.wpi.first.math.numbers.N3
 import org.frc5183.logging.AutoLogInputs
-import swervelib.SwerveModule
 
 interface SwerveDriveIO {
     class SwerveDriveIOInputs : AutoLogInputs() {
