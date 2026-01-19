@@ -1,4 +1,4 @@
-package org.frc5183.logging
+package org.frc5183.robot.logging
 
 import edu.wpi.first.units.Measure
 import edu.wpi.first.units.MutableMeasure
