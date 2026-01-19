@@ -7,7 +7,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds
 import edu.wpi.first.math.kinematics.SwerveModuleState
 import edu.wpi.first.math.numbers.N1
 import edu.wpi.first.math.numbers.N3
-import org.frc5183.logging.AutoLogInputs
+import org.frc5183.robot.logging.AutoLogInputs
 
 interface SwerveDriveIO {
     class SwerveDriveIOInputs : AutoLogInputs() {

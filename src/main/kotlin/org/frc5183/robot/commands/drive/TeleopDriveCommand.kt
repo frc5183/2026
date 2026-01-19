@@ -96,7 +96,8 @@ class TeleopDriveCommand(
         if (fieldRelative && DriverStation.getAlliance().orElseGet {
                 DriverStation.Alliance.Red
             } == DriverStation.Alliance.Red
-        ) { // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition. Otherwise revert to 2025 code to at least keep the issues consistent with last year.
+        ) { // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition.
+            // Otherwise revert to 2025 code to at least keep the issues consistent with last year.
             fieldRelativeTranslation.rotateBy(Rotation2d.k180deg)
         } else {
             fieldRelativeTranslation
