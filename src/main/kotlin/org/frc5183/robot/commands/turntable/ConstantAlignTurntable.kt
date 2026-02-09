@@ -5,17 +5,15 @@ import org.frc5183.robot.subsystems.turntable.TurntableSubsystem
 import org.frc5183.robot.target.FieldTarget
 
 /**
- * A command that will align the turntable to be centered on the middle hub targets and then stop.
+ * A command that will constantly align the turntable to be centered on the middle hub targets.
  * @param turntable The turntable subsystem to use.
  *
- * @see ConstantAlignTurntable
+ * @see AlignTurntable
  */
-class AlignTurntable(private val turntable: TurntableSubsystem) : Command() {
+class ConstantAlignTurntable(private val turntable: TurntableSubsystem) : Command() {
     init {
         addRequirements(turntable)
     }
-
-    private var aligned = false
 
     override fun execute() {
         val targets = turntable.targets.filter { it.fiducialId == FieldTarget.HUB_MIDDLE_LEFT.id || it.fiducialId == FieldTarget.HUB_MIDDLE_RIGHT.id }
@@ -35,7 +33,6 @@ class AlignTurntable(private val turntable: TurntableSubsystem) : Command() {
             turntable.setSpeed(1.0)
         } else { // If we can see both targets, we're centered enough.
             turntable.stop()
-            aligned = true
         }
 
         // TODO: Add additional checks to center based off (target).detectedCorners and their positioning on the camera
@@ -46,5 +43,5 @@ class AlignTurntable(private val turntable: TurntableSubsystem) : Command() {
         turntable.stop()
     }
 
-    override fun isFinished(): Boolean = aligned
+    override fun isFinished(): Boolean = false
 }
