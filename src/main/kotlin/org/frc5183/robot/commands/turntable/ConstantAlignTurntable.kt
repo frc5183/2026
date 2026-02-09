@@ -27,6 +27,7 @@ class ConstantAlignTurntable(
         // We can't see any targets, just spin until we can.
         if (targets.isEmpty()) {
             turntable.setSpeed(1.0)
+            return
         }
 
         // Get our left and right targets
