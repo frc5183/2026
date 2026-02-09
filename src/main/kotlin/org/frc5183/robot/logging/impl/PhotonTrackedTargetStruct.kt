@@ -10,7 +10,7 @@ object PhotonTrackedTargetStruct : Struct<PhotonTrackedTarget> {
 
     override fun getTypeName(): String = "PhotonTrackedTarget"
 
-    override fun getSize(): Int = Struct.kSizeFloat
+    override fun getSize(): Int = Struct.kSizeDouble * 4 + Struct.kSizeInt32
 
     override fun getSchema(): String = "double yaw;double pitch;double area;double skew;int32 fiducialId;"
 
