@@ -19,6 +19,10 @@ class AlignTurntable(
 
     private var aligned = false
 
+    override fun initialize() {
+        aligned = false
+    }
+
     override fun execute() {
         val targets =
             turntable.targets.filter {
