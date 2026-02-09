@@ -96,11 +96,7 @@ abstract class AutoLogInputs : LoggableInputs {
         value: Array<T>,
         struct: Struct<T>,
         key: String? = null,
-    ) = LoggedInput(value, key, { k, v ->
-        for (element in v) {
-            put<T>(k, struct, element)
-        }
-    }, { k, _ -> get<T>(k, struct) })
+    ) = LoggedInput(value, key, { k, v -> put<T>(k, struct, *v) }, { k, _ -> get<T>(k, struct) })
 
     private val toLogRunners = mutableListOf<(LogTable) -> Unit>()
     private val fromLogRunners = mutableListOf<(LogTable) -> Unit>()
