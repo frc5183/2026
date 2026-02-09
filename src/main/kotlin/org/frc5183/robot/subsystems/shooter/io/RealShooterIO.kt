@@ -2,7 +2,9 @@ package org.frc5183.robot.subsystems.shooter.io
 
 import com.revrobotics.spark.SparkMax
 
-class RealShooterIO(val motor: SparkMax) : ShooterIO {
+class RealShooterIO(
+    val motor: SparkMax,
+) : ShooterIO {
     override fun updateInputs(inputs: ShooterIOInputs) {
         inputs.shooterSpeed = motor.get()
     }

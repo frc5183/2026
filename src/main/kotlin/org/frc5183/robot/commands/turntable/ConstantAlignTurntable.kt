@@ -10,13 +10,19 @@ import org.frc5183.robot.target.FieldTarget
  *
  * @see AlignTurntable
  */
-class ConstantAlignTurntable(private val turntable: TurntableSubsystem) : Command() {
+class ConstantAlignTurntable(
+    private val turntable: TurntableSubsystem,
+) : Command() {
     init {
         addRequirements(turntable)
     }
 
     override fun execute() {
-        val targets = turntable.targets.filter { it.fiducialId == FieldTarget.HUB_MIDDLE_LEFT.id || it.fiducialId == FieldTarget.HUB_MIDDLE_RIGHT.id }
+        val targets =
+            turntable.targets.filter {
+                it.fiducialId == FieldTarget.HUB_MIDDLE_LEFT.id ||
+                    it.fiducialId == FieldTarget.HUB_MIDDLE_RIGHT.id
+            }
 
         // We can't see any targets, just spin until we can.
         if (targets.isEmpty()) {

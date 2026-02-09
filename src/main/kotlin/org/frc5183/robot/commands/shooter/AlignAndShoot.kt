@@ -9,7 +9,7 @@ import org.frc5183.robot.subsystems.turntable.TurntableSubsystem
 
 class AlignAndShoot(
     shooter: ShooterSubsystem,
-    turntable: TurntableSubsystem
+    turntable: TurntableSubsystem,
 ) : SequentialCommandGroup() {
     init {
         addRequirements(shooter)
@@ -19,8 +19,8 @@ class AlignAndShoot(
             AlignTurntable(turntable),
             ParallelCommandGroup(
                 ShootCommand(shooter),
-                ConstantAlignTurntable(turntable)
-            )
+                ConstantAlignTurntable(turntable),
+            ),
         )
     }
 }

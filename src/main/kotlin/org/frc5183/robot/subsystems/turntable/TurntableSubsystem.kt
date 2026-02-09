@@ -5,7 +5,9 @@ import org.frc5183.robot.subsystems.turntable.io.TurntableIO
 import org.frc5183.robot.subsystems.turntable.io.TurntableIOInputs
 import org.photonvision.targeting.PhotonTrackedTarget
 
-class TurntableSubsystem(val io: TurntableIO) : SubsystemBase() {
+class TurntableSubsystem(
+    val io: TurntableIO,
+) : SubsystemBase() {
     val ioInputs = TurntableIOInputs()
 
     val targets: Array<PhotonTrackedTarget>

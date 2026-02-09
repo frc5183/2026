@@ -6,5 +6,6 @@ interface TurntableIO {
     fun updateInputs(inputs: TurntableIOInputs)
 
     fun setSpeed(speed: Double)
+
     fun stop()
 }

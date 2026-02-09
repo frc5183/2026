@@ -6,5 +6,6 @@ interface ShooterIO {
     fun updateInputs(inputs: ShooterIOInputs)
 
     fun run(speed: Double)
+
     fun stop()
 }

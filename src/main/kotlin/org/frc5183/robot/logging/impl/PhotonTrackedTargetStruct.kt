@@ -12,8 +12,7 @@ object PhotonTrackedTargetStruct : Struct<PhotonTrackedTarget> {
 
     override fun getSize(): Int = Struct.kSizeFloat
 
-    override fun getSchema(): String =
-        "double yaw;double pitch;double area;double skew;int32 fiducialId;"
+    override fun getSchema(): String = "double yaw;double pitch;double area;double skew;int32 fiducialId;"
 
     override fun unpack(bb: ByteBuffer?): PhotonTrackedTarget? {
         if (bb == null) return null
@@ -27,7 +26,10 @@ object PhotonTrackedTargetStruct : Struct<PhotonTrackedTarget> {
         return target
     }
 
-    override fun pack(bb: ByteBuffer?, value: PhotonTrackedTarget?) {
+    override fun pack(
+        bb: ByteBuffer?,
+        value: PhotonTrackedTarget?,
+    ) {
         if (bb == null || value == null) return
 
         bb.putDouble(value.yaw)
@@ -36,5 +38,4 @@ object PhotonTrackedTargetStruct : Struct<PhotonTrackedTarget> {
         bb.putDouble(value.skew)
         bb.putInt(value.fiducialId)
     }
-
 }
