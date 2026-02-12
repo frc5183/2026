@@ -1,4 +1,4 @@
-package org.frc5183.robot.logging.impl
+package org.frc5183.robot.logging.struct
 
 import edu.wpi.first.util.struct.Struct
 import org.photonvision.targeting.PhotonTrackedTarget
