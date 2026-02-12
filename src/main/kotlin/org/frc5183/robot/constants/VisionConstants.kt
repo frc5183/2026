@@ -10,8 +10,8 @@ import org.photonvision.PhotonCamera
 object VisionConstants {
     val APRIL_TAG_LAYOUT = AprilTagFields.k2026RebuiltWelded // Double check this if outside FIM district.
 
-    val FRONT_CAMERA = FixedCamera("front", Transform3d.kZero, VecBuilder.fill(4.0, 4.0, 8.0), VecBuilder.fill(0.5, 0.5, 1.0)) // todo
-    val BACK_CAMERA = FixedCamera("back", Transform3d.kZero, VecBuilder.fill(4.0, 4.0, 8.0), VecBuilder.fill(0.5, 0.5, 1.0)) // todo
+    val FRONT_CAMERA: FixedCamera = TODO()
+    val BACK_CAMERA: FixedCamera = TODO()
 
-    val TURNTABLE_CAMERA = PhotonCamera("turntable") // todo
+    val TURNTABLE_CAMERA: PhotonCamera = TODO()
 }
