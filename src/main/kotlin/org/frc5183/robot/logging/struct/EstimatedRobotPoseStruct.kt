@@ -16,9 +16,7 @@ object EstimatedRobotPoseStruct : Struct<EstimatedRobotPose> {
 
     override fun getSchema(): String = "double poseX;double poseY;double poseZ;double rotX;double rotY;double rotZ;double timestampSeconds"
 
-    override fun unpack(bb: ByteBuffer?): EstimatedRobotPose? {
-        if (bb == null) return null
-
+    override fun unpack(bb: ByteBuffer): EstimatedRobotPose {
         val poseX = bb.getDouble()
         val poseY = bb.getDouble()
         val poseZ = bb.getDouble()
@@ -41,11 +39,9 @@ object EstimatedRobotPoseStruct : Struct<EstimatedRobotPose> {
     }
 
     override fun pack(
-        bb: ByteBuffer?,
-        value: EstimatedRobotPose?,
+        bb: ByteBuffer,
+        value: EstimatedRobotPose,
     ) {
-        if (bb == null || value == null) return
-
         bb.putDouble(value.estimatedPose.x)
         bb.putDouble(value.estimatedPose.y)
         bb.putDouble(value.estimatedPose.z)
