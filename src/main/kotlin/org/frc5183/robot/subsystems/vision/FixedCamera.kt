@@ -59,7 +59,7 @@ class FixedCamera(
     /**
      * Current standard deviations used.
      */
-    lateinit var currentStandardDeviations: Matrix<N3, N1>
+    var currentStandardDeviations: Matrix<N3, N1> = singleTagStandardDeviations
 
     /**
      * Results list to be updated periodically and cached to avoid unnecessary queries.
