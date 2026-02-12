@@ -98,7 +98,8 @@ class FixedCamera(
             visionEst = poseEstimator.estimateCoprocMultiTagPose(change).getOrNull()
 
             // Fallback estimation if multi tag fails.
-            if (visionEst == null) poseEstimator.estimateLowestAmbiguityPose(change).getOrNull()
+            if (visionEst == null)
+                visionEst = poseEstimator.estimateLowestAmbiguityPose(change).getOrNull()
 
             updateEstimationStdDevs(visionEst, change.getTargets())
         }
