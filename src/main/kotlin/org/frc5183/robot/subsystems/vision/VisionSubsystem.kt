@@ -7,7 +7,9 @@ import org.frc5183.robot.subsystems.vision.io.VisionIOInputs
 import org.photonvision.EstimatedRobotPose
 import org.photonvision.targeting.PhotonTrackedTarget
 
-class VisionSubsystem(val io: VisionIO) : SubsystemBase() {
+class VisionSubsystem(
+    val io: VisionIO,
+) : SubsystemBase() {
     private val inputs = VisionIOInputs()
 
     val targets: List<PhotonTrackedTarget>

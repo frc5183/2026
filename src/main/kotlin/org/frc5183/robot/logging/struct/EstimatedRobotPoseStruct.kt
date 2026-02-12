@@ -26,7 +26,14 @@ object EstimatedRobotPoseStruct : Struct<EstimatedRobotPose> {
         val rotY = bb.getDouble()
         val rotZ = bb.getDouble()
 
-        val pose3d = Pose3d(poseX, poseY, poseZ, edu.wpi.first.math.geometry.Rotation3d(rotX, rotY, rotZ))
+        val pose3d =
+            Pose3d(
+                poseX,
+                poseY,
+                poseZ,
+                edu.wpi.first.math.geometry
+                    .Rotation3d(rotX, rotY, rotZ),
+            )
 
         val timestampSeconds = bb.getDouble()
 

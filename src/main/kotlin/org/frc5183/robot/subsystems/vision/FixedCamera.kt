@@ -18,7 +18,6 @@ import org.photonvision.targeting.PhotonTrackedTarget
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 
-
 /**
  * A camera placed at a fixed, known [Transform3d] that therefore can be used for pose estimation.
  */
@@ -107,7 +106,8 @@ class FixedCamera(
     }
 
     private fun updateEstimationStdDevs(
-        estimatedPose: EstimatedRobotPose?, targets: MutableList<PhotonTrackedTarget>
+        estimatedPose: EstimatedRobotPose?,
+        targets: MutableList<PhotonTrackedTarget>,
     ) {
         if (estimatedPose == null) {
             // No pose input. Default to single-tag std devs
@@ -137,11 +137,12 @@ class FixedCamera(
                 }
                 // Increase std devs based on (average) distance
                 if (numTags == 1 && avgDist > 4) {
-                    estStdDevs = VecBuilder.fill(
-                        Double.MAX_VALUE,
-                        Double.MAX_VALUE,
-                        Double.MAX_VALUE
-                    )
+                    estStdDevs =
+                        VecBuilder.fill(
+                            Double.MAX_VALUE,
+                            Double.MAX_VALUE,
+                            Double.MAX_VALUE,
+                        )
                 } else {
                     estStdDevs = estStdDevs.times(1 + (avgDist * avgDist / 30))
                 }
