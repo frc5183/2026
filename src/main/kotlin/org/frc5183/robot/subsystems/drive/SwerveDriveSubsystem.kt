@@ -11,13 +11,16 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds
 import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.wpilibj2.command.CommandScheduler
 import edu.wpi.first.wpilibj2.command.SubsystemBase
+import org.frc5183.robot.constants.VisionConstants
 import org.frc5183.robot.math.pathfinding.LocalADStarAK
 import org.frc5183.robot.subsystems.drive.io.SwerveDriveIO
+import org.frc5183.robot.subsystems.vision.VisionSubsystem
 import org.littletonrobotics.junction.Logger
 import kotlin.jvm.optionals.getOrNull
 
 class SwerveDriveSubsystem(
     private val io: SwerveDriveIO,
+    private val vision: VisionSubsystem? = null,
 ) : SubsystemBase() {
     private val ioInputs = SwerveDriveIO.SwerveDriveIOInputs()
 
@@ -59,6 +62,10 @@ class SwerveDriveSubsystem(
     override fun periodic() {
         io.updateInputs(ioInputs)
         Logger.processInputs("Swerve", ioInputs)
+
+        vision?.estimatedRobotPoses?.forEach { (camera, pose) ->
+            io.addVisionMeasurement(pose.estimatedPose.toPose2d(), pose.timestampSeconds, camera.currentStandardDeviations)
+        }
     }
 
     fun setMotorBrake(brake: Boolean) = io.setMotorBrake(brake)

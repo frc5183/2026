@@ -1,4 +1,4 @@
-package org.frc5183.robot.logging.impl
+package org.frc5183.robot.logging.struct
 
 import edu.wpi.first.util.struct.Struct
 import org.photonvision.targeting.PhotonTrackedTarget
@@ -14,9 +14,7 @@ object PhotonTrackedTargetStruct : Struct<PhotonTrackedTarget> {
 
     override fun getSchema(): String = "double yaw;double pitch;double area;double skew;int32 fiducialId;"
 
-    override fun unpack(bb: ByteBuffer?): PhotonTrackedTarget? {
-        if (bb == null) return null
-
+    override fun unpack(bb: ByteBuffer): PhotonTrackedTarget {
         val target = PhotonTrackedTarget()
         target.yaw = bb.getDouble()
         target.pitch = bb.getDouble()
@@ -27,11 +25,9 @@ object PhotonTrackedTargetStruct : Struct<PhotonTrackedTarget> {
     }
 
     override fun pack(
-        bb: ByteBuffer?,
-        value: PhotonTrackedTarget?,
+        bb: ByteBuffer,
+        value: PhotonTrackedTarget,
     ) {
-        if (bb == null || value == null) return
-
         bb.putDouble(value.yaw)
         bb.putDouble(value.pitch)
         bb.putDouble(value.area)

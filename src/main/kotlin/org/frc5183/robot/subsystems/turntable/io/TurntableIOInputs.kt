@@ -1,9 +1,7 @@
 package org.frc5183.robot.subsystems.turntable.io
 
-import edu.wpi.first.util.struct.Struct
 import org.frc5183.robot.logging.AutoLogInputs
-import org.frc5183.robot.logging.impl.PhotonTrackedTargetStruct
-import org.photonvision.proto.Photon
+import org.frc5183.robot.logging.struct.PhotonTrackedTargetStruct
 import org.photonvision.targeting.PhotonTrackedTarget
 
 class TurntableIOInputs : AutoLogInputs() {

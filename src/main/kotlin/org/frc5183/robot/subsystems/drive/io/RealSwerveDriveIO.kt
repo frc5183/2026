@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Translation2d
 import edu.wpi.first.math.kinematics.ChassisSpeeds
 import edu.wpi.first.math.numbers.N1
 import edu.wpi.first.math.numbers.N3
+import org.frc5183.robot.subsystems.vision.VisionSubsystem
 import swervelib.SwerveDrive
 
 open class RealSwerveDriveIO(

@@ -47,7 +47,7 @@ abstract class AutoLogInputs : LoggableInputs {
     ) = LoggedInput(value, key, LogTable::put, LogTable::get)
 
     fun <T> log(
-        value: T,
+        value: T?,
         struct: Struct<T>,
         key: String? = null,
     ) = LoggedInput(value, key, { k, v -> put(k, struct, v) }, { k, v -> get(k, struct, v) })
