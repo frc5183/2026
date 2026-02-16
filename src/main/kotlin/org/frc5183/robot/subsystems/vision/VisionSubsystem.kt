@@ -12,8 +12,10 @@ class VisionSubsystem(
 ) : SubsystemBase() {
     private val inputs = VisionIOInputs()
 
-    val targets: List<PhotonTrackedTarget>
-        get() = inputs.targets.toList()
+    val targets: List<Pair<FixedCamera, PhotonTrackedTarget>>
+        get() =
+            inputs.frontTargets.map { Pair(VisionConstants.FRONT_CAMERA, it) } +
+                    inputs.backTargets.map { Pair(VisionConstants.BACK_CAMERA, it) }
 
     val estimatedRobotPoses: Map<FixedCamera, EstimatedRobotPose>
         get() {

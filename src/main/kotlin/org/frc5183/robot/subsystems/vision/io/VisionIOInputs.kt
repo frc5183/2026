@@ -7,7 +7,8 @@ import org.photonvision.EstimatedRobotPose
 import org.photonvision.targeting.PhotonTrackedTarget
 
 class VisionIOInputs : AutoLogInputs() {
-    var targets by log(emptyArray<PhotonTrackedTarget>(), PhotonTrackedTargetStruct)
+    var frontTargets by log(emptyArray<PhotonTrackedTarget>(), PhotonTrackedTargetStruct)
+    var backTargets by log(emptyArray<PhotonTrackedTarget>(), PhotonTrackedTargetStruct)
     var frontEstimatedRobotPose by log(null as EstimatedRobotPose?, EstimatedRobotPoseStruct)
     var backEstimatedRobotPose by log(null as EstimatedRobotPose?, EstimatedRobotPoseStruct)
 }

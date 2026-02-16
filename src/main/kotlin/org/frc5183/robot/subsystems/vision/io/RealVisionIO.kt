@@ -11,8 +11,8 @@ class RealVisionIO(
         frontCamera.periodic()
         backCamera.periodic()
 
-        val targets = frontCamera.targets + backCamera.targets
-        inputs.targets = targets.toTypedArray()
+        inputs.frontTargets = frontCamera.targets.toTypedArray()
+        inputs.backTargets = backCamera.targets.toTypedArray()
 
         inputs.frontEstimatedRobotPose = frontCamera.estimatedRobotPose
         inputs.backEstimatedRobotPose = backCamera.estimatedRobotPose
