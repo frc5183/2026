@@ -5,6 +5,7 @@ import edu.wpi.first.math.geometry.Translation2d
 import edu.wpi.first.math.kinematics.ChassisSpeeds
 import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.wpilibj2.command.Command
+import org.frc5183.robot.constants.PhysicalConstants
 import org.frc5183.robot.math.curve.Curve
 import org.frc5183.robot.subsystems.drive.SwerveDriveSubsystem
 import kotlin.math.atan2
@@ -60,15 +61,15 @@ class TeleopDriveCommand(
             translation = applyAllianceAwareTranslation(translation)
         }
 
-        val xSpeed = TODO("requires constants") * translation.x
-        val ySpeed = TODO("requires constants") * translation.y
+        val xSpeed = PhysicalConstants.MAX_VELOCITY * translation.x
+        val ySpeed = PhysicalConstants.MAX_VELOCITY * translation.y
 
         drive.drive(
             if (fieldRelative) {
                 ChassisSpeeds.fromFieldRelativeSpeeds(
                     xSpeed,
                     ySpeed,
-                    TODO("requires constants") * rotationCurve(rotationInput()),
+                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput()),
                     drive.robotPose.rotation,
                 )
             } else {
@@ -76,7 +77,7 @@ class TeleopDriveCommand(
                 ChassisSpeeds(
                     xSpeed,
                     ySpeed,
-                    TODO("requires constants") * rotationCurve(rotationInput()),
+                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput()),
                 )
             },
         )
