@@ -33,11 +33,4 @@ object SwervePIDConstants {
             0.0, // f
             0.0 // iz
         )
-
-    val CONTROLLER_CONFIG: SwerveControllerConfiguration =
-        SwerveControllerConfiguration(
-            SwerveConstants.YAGSL,
-            HEADING_PID,
-            PhysicalConstants.MAX_VELOCITY.`in`(Units.MetersPerSecond)
-        )
 }

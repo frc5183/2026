@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.RobotBase
 import edu.wpi.first.wpilibj.Threads
 import edu.wpi.first.wpilibj.util.WPILibVersion
 import edu.wpi.first.wpilibj2.command.CommandScheduler
+import org.frc5183.robot.commands.drive.TeleopDriveCommand
 import org.frc5183.robot.constants.*
 import org.frc5183.robot.constants.swerve.SwerveConstants
 import org.frc5183.robot.constants.swerve.SwervePIDConstants
@@ -47,7 +48,7 @@ object Robot : LoggedRobot() {
 
         val swerve = SwerveDrive(
             SwerveConstants.YAGSL,
-            SwervePIDConstants.CONTROLLER_CONFIG,
+            SwerveConstants.YAGSL_CONTROLLER_CONFIG,
             PhysicalConstants.MAX_VELOCITY.`in`(Units.MetersPerSecond),
             Pose2d.kZero
         )
@@ -67,5 +68,10 @@ object Robot : LoggedRobot() {
         CommandScheduler.getInstance().run()
 
         Threads.setCurrentThreadPriority(false, 10)
+    }
+
+    override fun teleopInit() {
+        CommandScheduler.getInstance().cancelAll()
+        Controls.registerControls(drive)
     }
 }
