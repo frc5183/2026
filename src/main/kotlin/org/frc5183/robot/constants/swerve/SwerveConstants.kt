@@ -10,8 +10,11 @@ import swervelib.imu.SwerveIMU
 import swervelib.parser.SwerveControllerConfiguration
 import swervelib.parser.SwerveDriveConfiguration
 import swervelib.parser.SwerveModulePhysicalCharacteristics
+import swervelib.telemetry.SwerveDriveTelemetry
 
 object SwerveConstants {
+    val VERBOSITY: SwerveDriveTelemetry.TelemetryVerbosity = SwerveDriveTelemetry.TelemetryVerbosity.HIGH
+    
     val IMU: SwerveIMU = NavXSwerve(DeviceConstants.IMUPort)
     val IMU_INVERTED: Boolean = false
 

@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Translation2d
 import edu.wpi.first.math.kinematics.ChassisSpeeds
 import edu.wpi.first.math.numbers.N1
 import edu.wpi.first.math.numbers.N3
+import org.frc5183.robot.constants.swerve.SwerveConstants
 import org.frc5183.robot.subsystems.vision.VisionSubsystem
 import swervelib.SwerveDrive
 
@@ -14,6 +15,7 @@ open class RealSwerveDriveIO(
 ) : SwerveDriveIO {
     init {
         drive.headingCorrection = false
+        drive.setCosineCompensator(SwerveConstants.COSINE_COMPENSATOR)
     }
 
     override val pose: Pose2d
@@ -49,5 +51,5 @@ open class RealSwerveDriveIO(
         openLoop: Boolean,
     ) = drive.drive(translation, rotation, fieldOriented, openLoop)
 
-    override fun drive(speeds: ChassisSpeeds) = drive.drive(speeds)
+    override fun drive(speeds: ChassisSpeeds) = drive.driveFieldOriented(speeds)
 }

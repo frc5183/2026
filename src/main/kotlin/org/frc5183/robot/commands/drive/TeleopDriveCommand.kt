@@ -3,6 +3,7 @@ package org.frc5183.robot.commands.drive
 import edu.wpi.first.math.geometry.Rotation2d
 import edu.wpi.first.math.geometry.Translation2d
 import edu.wpi.first.math.kinematics.ChassisSpeeds
+import edu.wpi.first.units.Units
 import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.wpilibj2.command.Command
 import org.frc5183.robot.constants.PhysicalConstants
@@ -64,23 +65,25 @@ class TeleopDriveCommand(
         val xSpeed = PhysicalConstants.MAX_VELOCITY * translation.x
         val ySpeed = PhysicalConstants.MAX_VELOCITY * translation.y
 
-        drive.drive(
-            if (fieldRelative) {
-                ChassisSpeeds.fromFieldRelativeSpeeds(
-                    xSpeed,
-                    ySpeed,
-                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput()),
-                    drive.robotPose.rotation,
-                )
-            } else {
-                // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition. Otherwise revert to 2025 code to at least keep the issues consistent with last year.
-                ChassisSpeeds(
-                    xSpeed,
-                    ySpeed,
-                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput()),
-                )
-            },
-        )
+        drive.drive(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, Units.DegreesPerSecond.of(0.0), drive.robotPose.rotation))
+
+//        drive.drive(
+//            if (fieldRelative) {
+//                ChassisSpeeds.fromRobotRelativeSpeeds(
+//                    xSpeed,
+//                    ySpeed,
+//                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput()),
+//                    drive.robotPose.rotation,
+//                )
+//            } else {
+//                // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition. Otherwise revert to 2025 code to at least keep the issues consistent with last year.
+//                ChassisSpeeds(
+//                    xSpeed,
+//                    ySpeed,
+//                    PhysicalConstants.MAX_ANGULAR_VELOCITY * rotationCurve(rotationInput())
+//                )
+//            },
+//        )
     }
 
     fun applyCurveToTranslation(
@@ -96,7 +99,7 @@ class TeleopDriveCommand(
     fun applyAllianceAwareTranslation(fieldRelativeTranslation: Translation2d): Translation2d =
         if (fieldRelative && DriverStation.getAlliance().orElseGet {
                 DriverStation.Alliance.Red
-            } == DriverStation.Alliance.Red
+            } == DriverStation.Alliance.Blue
         ) { // todo: This was changed from 2025 codebase, make sure that this is correct BEFORE going to competition.
             // Otherwise revert to 2025 code to at least keep the issues consistent with last year.
             fieldRelativeTranslation.rotateBy(Rotation2d.k180deg)

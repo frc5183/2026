@@ -22,10 +22,10 @@ object Controls {
             drive,
             xInput = { DRIVER_CONTROLLER.leftX },
             yInput = { DRIVER_CONTROLLER.leftY },
-            rotationInput = { DRIVER_CONTROLLER.rightX },
-            translationCurve = Curve({ if (it.absoluteValue > 0.2) it else 0.0 }),
-            rotationCurve = Curve({ if (it.absoluteValue > 0.2) it else 0.0 }),
-            fieldRelative = true
+            rotationInput = { 0.0 },
+            translationCurve = Curve { if (it.absoluteValue > 0.2) it else 0.0 },
+            rotationCurve = Curve { 0.0 },
+            fieldRelative = false
         )
 
         drive.defaultCommand = TELEOP_DRIVE_COMMAND

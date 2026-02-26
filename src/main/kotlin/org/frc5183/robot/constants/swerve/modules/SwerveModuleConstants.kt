@@ -21,6 +21,7 @@ interface SwerveModuleConstants {
     val DRIVE_MOTOR_INVERTED: Boolean
     val ANGLE_MOTOR: SwerveMotor
     val ANGLE_MOTOR_INVERTED: Boolean
+
     val YAGSL: SwerveModuleConfiguration
         get() = SwerveModuleConfiguration(
             DRIVE_MOTOR,
